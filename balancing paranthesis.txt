@@ -1,0 +1,23 @@
+char stack[10];
+int top=-1;
+void push(char ch){
+  stack[++top]=ch;
+}
+void pop(){
+  top--;
+}
+int main(){
+  char str[10];
+  scanf("%s",str);
+  int i=0;
+  while(str[i]!='\0'){
+    if(str[i]=='{' || str[i]=='['||str[i]=='(') 
+     push(str[i]);
+    else if((str[i]=='}' && stack[top]=='{') || (str[i]==']' && stack[top]=='[') || (str[i]==')' && stack[top]=='('))  pop();
+    else break;
+    i++;
+  }
+  if(top==-1 && str[i]=='\0') printf("YES");
+  else printf("NO");
+  return 0;
+}

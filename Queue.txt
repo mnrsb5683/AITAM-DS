@@ -1,0 +1,55 @@
+#define MAX 10
+int queue[MAX];
+int front=0,rear=-1;
+void enqueue(int data){
+  if(rear==MAX-1){
+    printf("Queue is FULL");
+  }
+  else{
+    queue[++rear]=data;
+  }
+}
+void dequeue(){
+  if(front>rear){
+     printf("Queues is EMPTY");
+  }
+  else{
+    front++;
+    if(front>rear){
+      front=0;
+      rear=-1;
+    }
+  }
+}
+Queue implementation with LinkedList
+struct node{
+  int data;
+  struct node *next;
+}*front=NULL,*rear=NULL;
+void enqueue(int data){
+  struct node *temp=(struct node*)malloc(sizeof(struct node));
+  temp->data=data;
+  temp->next=NULL;
+  if(rear==NULL){
+    front=rear=temp;
+  }
+  else{
+    rear->next=temp;
+    rear=temp;
+  }
+}
+void dequeue(){
+  struct node *temp=front;
+  if(front==NULL) return;
+  else if(front==rear){
+    front=rear=NULL;
+    free(temp);
+  }
+  else{
+   front=front->next;
+   temp->next=NULL;
+   free(temp);
+ }
+}
+
+
